@@ -28,3 +28,8 @@ Usage
 ./index.php?u=support&format=json
 
 (where "support" is the screen name)
+
+Tips
+============================
+
+- Dont forget to put a `/` after your cache folder name in `config.php`.
