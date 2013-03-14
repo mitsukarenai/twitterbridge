@@ -10,7 +10,7 @@ require('config.php');
 if($config['key'] == '' or $config['secret'] == '' or $config['token'] == '' or $config['token_secret'] == '') { header("HTTP/1.0 404 Not Found"); die('missing API credentials in config.php'); }
 
 // whitelist control
-$whitelist = json_decode(file_get_contents('whitelist.json'), TRUE);
+$whitelist = json_decode(file_get_contents($config['whitelist']), TRUE);
 if (!in_array($screenName, $whitelist)) { header("HTTP/1.0 403 Forbidden"); die('username is not whitelisted'); }
 
 /*  START PROCESSING */
