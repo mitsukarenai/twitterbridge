@@ -81,7 +81,7 @@ class StormTwitter {
   }
   
   private function getCacheLocation() {
-    return $this->defaults['directory'].'.tweetcache';
+    return $this->defaults['directory'].'cache.json';
   }
   
   private function getOptionsHash($options) {
@@ -106,7 +106,7 @@ class StormTwitter {
         return false;
       }
       
-      $cachename = $screenname."-".$this->getOptionsHash($options);
+      $cachename = $screenname;
       
       //Check if we have a cache for the user.
       if (!isset($cache[$cachename])) return false;
@@ -135,7 +135,7 @@ class StormTwitter {
     $token = $this->defaults['token'];
     $token_secret = $this->defaults['token_secret'];
     
-    $cachename = $screenname."-".$this->getOptionsHash($options);
+    $cachename = $screenname;
     
     $options = array_merge($options, array('screen_name' => $screenname, 'count' => 20));
     
