@@ -19,10 +19,12 @@ Version 0.2 alpha
 Usage
 ============================
 
-RSS output:
+- RSS output:
+
 ./index.php?u=support
 
-JSON output (raw Twitter proxy mode):
+- JSON output (raw Twitter proxy mode):
+
 ./index.php?u=support&format=json
 
 (where "support" is the screen name)
