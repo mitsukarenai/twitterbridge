@@ -19,7 +19,7 @@ $twitter = new StormTwitter($config);
 // getTweets is the only public method. For legacy reasons, it takes between 0 and 3 parameters.
 // getTweets(twitter_screenname, number_of_tweets, custom_parameters_to_go_twitter); 
 
-$twitter_data = $twitter->getTweets($screenName, 20, array('include_rts'=>true,'exclude_replies'=>true));
+$twitter_data = $twitter->getTweets($screenName, $tweetcount, array('include_rts'=>true,'exclude_replies'=>true));
 
 
 
@@ -38,7 +38,10 @@ else
 	$rss = '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">';
 	$rss .= '<channel><title>Twitter / '.$screenName.'</title><link>http://twitter.com/'.$screenName.'</link><description>Twitter updates from '.$screenName.'.</description>';
  
-	for ($i = 0; $i < 21; $i++) {
+	for ($i = 0; $i < $tweetcount; $i++)
+	{
+	if(isset($twitter_data[$i]['id_str'])) // because Twitter doesn't return the exact count
+		{
 		// Tweet Text
 		$desc = $twitter_data[$i]['text'];
 		// Build link back
@@ -48,8 +51,6 @@ else
 		$date = strtotime($date);
 
 		// Build final output
-		if(!empty($link))
-			{ 
 			$rss .=	'
 			<item>
 			<title>'.$desc.'</title>
@@ -58,9 +59,10 @@ else
 			<guid>http://twitter.com/'.$screenName.'/statuses/'.$link.'</guid>
 			<link>http://twitter.com/'.$screenName.'/statuses/'.$link.'</link>
 			</item>';
-			}
+			
  
 		}
+	}
 
 	// Final touch
 	$rss .= '

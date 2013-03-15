@@ -15,4 +15,6 @@ $config = array(
   'whitelist' => 'whitelist.json' 
 );
 
+$tweetcount = 200;  // retrieve up to 200 tweets per request, not more
+
 ?>
