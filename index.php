@@ -43,7 +43,7 @@ else
 	if(isset($twitter_data[$i]['id_str'])) // because Twitter doesn't return the exact count
 		{
 		// Tweet Text
-		$desc = $twitter_data[$i]['text'];
+		$desc = htmlspecialchars($twitter_data[$i]['text']);
 		// Build link back
 		$link = $twitter_data[$i]['id_str'];
 		// Date tweet posted
