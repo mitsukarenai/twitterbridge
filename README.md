@@ -29,6 +29,15 @@ Usage
 
 (where "support" is the screen name)
 
+Autoblog Project integration
+============================
+
+Just set in your `config.php` :
+```php
+define( 'API_TWITTER', 'http://twitterbridge.domain.tld?u=' );
+```
+
+
 Tips
 ============================
 
