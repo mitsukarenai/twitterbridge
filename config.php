@@ -11,10 +11,11 @@ $config = array(
   'token_secret' => '',
 //  - END Twitter API credentials
 
-  'cache_expire' => 900, //The duration of the cache
+  'cache_expire' => 300, //The duration of the cache
   'whitelist' => 'whitelist.json' 
 );
 
 $tweetcount = 200;  // retrieve up to 200 tweets per request, not more
+$maxusernames = 20; // allow up to 20 usernames  (keep it low or Twitter may ban your API key)
 
 ?>

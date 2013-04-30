@@ -14,7 +14,7 @@ Version 0.2 alpha
 - new: separate config file
 - new: configuration checks
 - changed: cache file structure
-- changed: cache expiration (15 minutes is enough right ?)
+- changed: cache expiration (5 minutes is enough right ?)
 
 Usage
 ============================
