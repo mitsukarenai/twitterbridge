@@ -12,7 +12,8 @@ $config = array(
 //  - END Twitter API credentials
 
   'cache_expire' => 300, //The duration of the cache
-  'whitelist' => 'whitelist.json' 
+  'whitelist' => 'whitelist.json', 
+  'unwhitelisted_header_message' => 'To ask username whitelisting, please contact the twitterbridge owner' 
 );
 
 $tweetcount = 200;  // retrieve up to 200 tweets per request, not more

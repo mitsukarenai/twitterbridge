@@ -1,17 +1,41 @@
 <?php
+
+require('config.php');
+$whitelist = json_decode(file_get_contents($config['whitelist']), TRUE);
+
+if(isset($_GET['status']))
+	{
+	/* status check */
+	header('Content-Type: application/json');
+	$json['usernames'] = count($whitelist);
+	$json['max_usernames'] = $maxusernames;
+	$json['whitelist'] = $whitelist;
+	echo json_encode($json);
+	die;
+	}
+
+
 // original: https://github.com/stormuk/storm-twitter + stevelacey patch
 if(!isset($_GET['u'])) { header("HTTP/1.0 404 Not Found"); die('no username provided');}
 $screenName = $_GET['u'];
 
 require('StormTwitter.class.php');
-require('config.php');
+
 
 // configuration control
 if($config['key'] == '' or $config['secret'] == '' or $config['token'] == '' or $config['token_secret'] == '') { header("HTTP/1.0 404 Not Found"); die('missing API credentials in config.php'); }
 
 // whitelist control
-$whitelist = json_decode(file_get_contents($config['whitelist']), TRUE);
-if (!in_array($screenName, $whitelist)) { header("HTTP/1.0 403 Forbidden"); die('username is not whitelisted'); }
+if (!in_array($screenName, $whitelist))
+	{
+	header("HTTP/1.0 403 Forbidden");
+	if (count($whitelist) >= $maxusernames)
+		{
+		header('X-twitterbridge: This twitterbridge is full ('.count($whitelist).' out of '.$maxusernames.'), no more usernames will be whitelisted.');
+		}
+	else { header('X-twitterbridge: '.$config['unwhitelisted_header_message']); }
+	die('username is not whitelisted');
+	}
 
 /*  START PROCESSING */
 $twitter = new StormTwitter($config);
@@ -27,6 +51,7 @@ if($_GET['format'] == 'json')
 	{
 	/* JSON OUTPUT */
 	header('Content-Type: application/json');
+	if(!empty($twitter_data['error'])) { header("HTTP/1.0 404 Not Found"); header('X-twitterbridge: Something went wrong. Please check for error messages.'); }
 	echo json_encode($twitter_data);
 	die;
 	}
@@ -35,6 +60,7 @@ else
 	{
 	/*  RSS OUTPUT */
 	// $rss is the HTML output string
+	if(!empty($twitter_data['error'])) { header("HTTP/1.0 404 Not Found"); header('X-twitterbridge: Something went wrong. Please check for error messages.'); }
 	$rss = '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">';
 	$rss .= '<channel><title>Twitter / '.$screenName.'</title><link>http://twitter.com/'.$screenName.'</link><description>Twitter updates from '.$screenName.'.</description>';
  
