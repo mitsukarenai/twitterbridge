@@ -19,6 +19,10 @@ Version 0.2 alpha
 Usage
 ============================
 
+- Twitterbridge status:
+
+./index.php?status
+
 - RSS output:
 
 ./index.php?u=support
