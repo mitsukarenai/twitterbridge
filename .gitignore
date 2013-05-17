@@ -1,3 +1,6 @@
 .DS_Store
 .tweetcache
 build-test.php
+config.php
+cache/*
+whitelist.json
