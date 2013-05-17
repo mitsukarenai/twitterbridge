@@ -9,6 +9,7 @@ if(isset($_GET['status']))
 	header('Content-Type: application/json');
 	$json['usernames'] = count($whitelist);
 	$json['max_usernames'] = $maxusernames;
+	$json['whitelist_request'] = $admin_contact_url;
 	$json['whitelist'] = $whitelist;
 	echo json_encode($json);
 	die;

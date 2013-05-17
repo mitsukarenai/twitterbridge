@@ -18,5 +18,6 @@ $config = array(
 
 $tweetcount = 200;  // retrieve up to 200 tweets per request, not more
 $maxusernames = 20; // allow up to 20 usernames  (keep it low or Twitter may ban your API key)
+$admin_contact_url = 'mywebsite.com / @_my_twitter'; // link to twitterbridge admin contact page
 
 ?>
