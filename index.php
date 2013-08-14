@@ -17,7 +17,7 @@ if(isset($_GET['status']))
 
 
 // original: https://github.com/stormuk/storm-twitter + stevelacey patch
-if(!isset($_GET['u'])) { header("HTTP/1.1 404 Not Found"); die('no username provided');}
+if(!isset($_GET['u'])) { header("HTTP/1.1 404 Not Found"); die('no username provided. <a href="./?status">Here the allowed usernames</a>');}
 $screenName = $_GET['u'];
 
 require('StormTwitter.class.php');
