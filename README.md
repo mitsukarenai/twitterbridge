@@ -1,9 +1,18 @@
 twitterbridge
 ===========================
 
-Yet another Twitter API 1.1 compliant timeline RSS/JSON feed builder, meant to continue the Autoblog Project's Twitter support.
+Yet another Twitter API 1.1 compliant timeline RSS/JSON feed builder, meant to resume the [Autoblog Project](https://github.com/mitsukarenai/Projet-Autoblog)'s Twitter support.
 
 Uses Abraham Williams's Twitter OAuth class; Uses stormuk's StormTwitter class
+
+## NOTICE:
+
+[Sebsauvage](https://github.com/sebsauvage/) and other devs including me have started a project to provide "feed bridges" for various websites with poor or no RSS/ATOM feed: [rss-bridge](https://github.com/sebsauvage/rss-bridge). The Twitter module is based on twitterbridge-noapi, and includes new stuff. Check it out ! :smile: 
+
+**twitterbridge is therefor DEPRECATED unless you need API-friendly code to build on or learn all the shit you must do when working on Twitter.**
+
+===================
+===================
 
 
 Version 0.2 alpha
